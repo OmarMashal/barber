@@ -184,3 +184,9 @@ npm run dev
 - جميع الـ API Routes الإدارية محمية بـ middleware
 - Row Level Security مفعّل على جميع الجداول في Supabase
 - مفاتيح Twilio وService Role Key تُستخدم فقط server-side
+
+---
+
+## المطور
+
+صُنع بواسطة **Omar Mashal** — [Arvora](https://arvora.com)
