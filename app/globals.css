@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ================================================================
+   DESIGN TOKENS (CSS custom properties)
+   ================================================================ */
+:root {
+  --gold-light:  #f0d080;
+  --gold:        #d4a843;
+  --gold-dark:   #a07830;
+  --bg:          #09090f;
+  --surface:     #0e0e18;
+  --surface-2:   #131320;
+  --border:      #1c1c2e;
+  --border-2:    #262638;
+  --text:        #f0ece4;
+  --text-muted:  #68687a;
+}
+
+/* ================================================================
+   BASE RESETS
+   ================================================================ */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'kern' 1;
+  }
+
+  /* Refined scrollbar */
+  ::-webkit-scrollbar       { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 99px; }
+  ::-webkit-scrollbar-thumb:hover { background: #383852; }
+
+  /* Dark date / time inputs */
+  input[type='date'],
+  input[type='time'] { color-scheme: dark; }
+
+  input[type='date']::-webkit-calendar-picker-indicator,
+  input[type='time']::-webkit-calendar-picker-indicator {
+    filter: invert(0.7) sepia(0.2);
+    cursor: pointer;
+  }
+
+  /* Remove number spin buttons */
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button { -webkit-appearance: none; }
+}
+
+/* ================================================================
+   UTILITY CLASSES
+   ================================================================ */
+@layer utilities {
+
+  /* Gold gradient text — used on hero heading accent */
+  .text-gold {
+    background: linear-gradient(135deg, #f0d080 0%, #d4a843 55%, #a07830 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Fine grid pattern for hero backgrounds */
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+    background-size: 52px 52px;
+  }
+
+  /* Gold radial spotlight (top of hero) */
+  .bg-spotlight {
+    background:
+      radial-gradient(ellipse 90% 55% at 50% -5%,
+        rgba(212, 168, 67, 0.11) 0%,
+        transparent 65%);
+  }
+
+  /* Shimmer / shine sweep on hover */
+  .shine {
+    position: relative;
+    overflow: hidden;
+  }
+  .shine::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.13) 50%,
+      transparent 60%
+    );
+    translate: -100%;
+    transition: none;
+  }
+  .shine:hover::after {
+    transition: translate 0.5s ease;
+    translate: 100%;
+  }
+
+  /* Soft gold glow for selected/active states */
+  .glow-gold {
+    box-shadow: 0 0 0 1px rgba(212,168,67,0.5),
+                0 0 20px -4px rgba(212,168,67,0.25);
+  }
+
+  /* Stagger animation delays */
+  .delay-75  { animation-delay: 75ms;  }
+  .delay-150 { animation-delay: 150ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-600 { animation-delay: 600ms; }
+
+  /* Animate-once — add with animation class */
+  .fill-both { animation-fill-mode: both; }
+
+  /* Balanced text wrapping */
+  .text-balance { text-wrap: balance; }
+}
+
+/* ================================================================
+   KEYFRAMES
+   ================================================================ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0);     }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1);    }
+}
+
+@keyframes pulseGold {
+  0%,100% { box-shadow: 0 0 0 0   rgba(212,168,67,0.5); }
+  50%     { box-shadow: 0 0 0 8px rgba(212,168,67,0);   }
+}
+
+@keyframes borderGlow {
+  0%,100% { border-color: rgba(212,168,67,0.3); }
+  50%     { border-color: rgba(212,168,67,0.7); }
+}
